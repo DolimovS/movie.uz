@@ -1,16 +1,12 @@
 <template>
-    <div class="container">
-        <Navbar/>
-    </div>
+    <h1>Home</h1>
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue';
 
     export default {
         name:"home",
         components:{
-            Navbar,
         }
 
     }
