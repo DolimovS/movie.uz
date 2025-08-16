@@ -11,8 +11,11 @@
             <Icon class="nav_icon_bars" @click="toggleMenyu" name="nav_bars" />
             <div @click.self="toggleMenyu" class="nav_link" :class="{ open: isOpen }">
                 <ul class="nav_list">
-                    <li v-for="link in links" :key="link.to">
-                        <router-link :to="link.to" active-class="active"><span>{{ link.label }}</span></router-link>
+                    <li v-for="link in links" :key="link.to" >
+                        <router-link 
+                        class="nav_link_item"
+                        
+                        :to="link.to" @click.native="toggleMenyu" ><span>{{ link.label }}</span></router-link>
                     </li>
                 </ul>
 
@@ -86,10 +89,13 @@ nav {
     color: #bfbfbf;
     border-radius: 8px;
 }
-:deep(.active span) {
+.nav_link_item.router-link-active span {
     font-weight: 500;
     background-color: #1a1a1a;
     color: #ffffff;
+}
+.nav_link ul li a {
+  text-decoration: none;
 }
 .nav_link ul li span:hover {
     font-weight: 500;
@@ -134,7 +140,6 @@ nav {
 @media (max-width: 768px) {
     nav {
         padding: 40px 16px;
-        /* border: 1px solid red; */
     }
     .nav_icons {
         display: none;
@@ -173,4 +178,4 @@ nav {
         font-size: 20px;
     }
 }
-</style>
+</style>  
