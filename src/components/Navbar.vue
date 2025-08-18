@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav class="container"> 
         <div class="nav_logo">
             <picture>
                 <source media="(min-width:1920px)" :srcset="desktopLogo">
@@ -62,6 +62,7 @@ export default {
 <style scoped>
 nav {
     display: flex;
+    flex-direction: row;
     align-items: center;
     color: white;
     justify-content: space-between;
