@@ -1,12 +1,15 @@
 <template>
-    <h1>Home</h1>
+    <HomeSection/>
 </template>
 
 <script>
+import HomeSection from '../components/HomeSection.vue';
+
 
     export default {
         name:"home",
         components:{
+            HomeSection,
         }
 
     }

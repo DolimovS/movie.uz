@@ -67,3 +67,9 @@ li{
 a{
     text-decoration: none;
 }
+
+
+button{
+    border: none;
+    outline: none;
+}

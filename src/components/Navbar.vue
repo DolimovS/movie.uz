@@ -61,6 +61,7 @@ export default {
 
 <style scoped>
 nav {
+    position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -68,7 +69,8 @@ nav {
     justify-content: space-between;
     width: 100%;
     padding: 23px 162px;
-
+    z-index: 999;
+    /* backdrop-filter: blur(10px); */
 }
 .nav_link ul {
     display: flex;
