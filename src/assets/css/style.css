@@ -57,6 +57,7 @@ body{
     width: 100%;
     margin: 0 auto;
     position: relative;
+    border: 1px solid red;
 }
 li{
     list-style: none;
