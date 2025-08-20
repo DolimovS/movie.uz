@@ -114,7 +114,7 @@ export default {
 
 .wrapper_home .sarlavha {
   display: flex;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100%;
   align-items: end;
   justify-content: space-between;
