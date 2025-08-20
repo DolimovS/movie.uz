@@ -4,6 +4,7 @@
     <HomeCatogoriya/>
     <div class="decices_product">
         <Sarlavha  :title="devices_title" :description="devices_description"/>
+        <Devices />
     </div>
    </div>
 </template>
@@ -12,6 +13,7 @@
 import HomeCatogoriya from '../components/HomeCatogoriya.vue';
 import HomeSection from '../components/HomeSection.vue';
 import Sarlavha from '../components/Sarlavha.vue';
+import Devices from "../components/Devices.vue"
 
 
     export default {
@@ -20,6 +22,7 @@ import Sarlavha from '../components/Sarlavha.vue';
             HomeSection,
             HomeCatogoriya,
             Sarlavha,
+            Devices,
         },
         data(){
             return{
