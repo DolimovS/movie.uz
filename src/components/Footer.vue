@@ -1,5 +1,5 @@
 <template>
-    <footer class="container">
+    <footer class="">
         <div class="footer ">
             <div class="footer_top">
                 <ul>
@@ -74,26 +74,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .footer {
     background-color: rgba(15, 15, 15, 1);
+    /* max-width: 1920px; */
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 100px;
     padding: 40px 162px 50px 162px;
 }
+
 .footer_top {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
-button {
+.footer button {
     border: none;
     background-color: transparent;
 }
 
-ul {
+.footer ul {
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -106,10 +108,11 @@ ul {
     letter-spacing: 0%;
 }
 
-ul li{
+.footer ul li {
     padding: 0 20px 0 0;
 }
-ul li:nth-child(1) {
+
+.footer ul li:nth-child(1) {
     margin-top: 60px;
     padding-bottom: 24px;
     font-family: Manrope;
@@ -121,12 +124,12 @@ ul li:nth-child(1) {
     letter-spacing: 0%;
 }
 
-.messages {
+.footer .messages {
     display: flex;
     gap: 14px;
 }
 
-.messages .footer_icon {
+.footer .messages .footer_icon {
     padding: 16px;
     border: 1px solid rgba(38, 38, 38, 1);
     border-radius: 8px;
@@ -153,6 +156,7 @@ ul li:nth-child(1) {
     display: flex;
     gap: 40px;
 }
+
 /* media */
 
 @media (max-width:1440px) {
@@ -160,15 +164,18 @@ ul li:nth-child(1) {
         gap: 80px;
         padding: 40px 80px 40px 80px;
     }
-    ul {
+
+    .footer ul {
         gap: 10px;
         font-size: 16px;
     }
-    ul li:nth-child(1) {
+
+    .footer ul li:nth-child(1) {
         padding-bottom: 20px;
         font-size: 18px;
         margin-top: 40px;
     }
+
     .messages {
         gap: 10px;
     }
@@ -185,53 +192,62 @@ ul li:nth-child(1) {
         gap: 32px;
     }
 }
+
 @media (max-width: 900px) {
-  .footer_top {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .footer_top {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
+
 @media (max-width: 750px) {
-        .footer {
+    .footer {
         gap: 50px;
         padding: 0 0 0 40px;
     }
-  .footer_top {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .footer_bottom {
-    flex-direction: column;
-    gap: 10px;
-    text-align: start;
+
+    .footer_top {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer_bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: start;
     }
 }
 
-@media (max-width: 400px){
+@media (max-width: 400px) {
     .footer {
-    gap: 50px;
-    padding:0 16px;
-}
-ul {
-    gap: 8px;
-   font-size: 14px;
+        gap: 50px;
+        padding: 0 16px;
+    }
 
-}
-ul li:nth-child(1) {
-    margin-top: 30px;
-    padding-bottom: 16px;
-    font-size: 16px;
-}
-.messages {
-    gap: 10px;
-}
+    .footer ul {
+        gap: 8px;
+        font-size: 14px;
 
-.messages .footer_icon {
-    padding: 10px;
-}
-.footer_bottom{
-    align-items: start;
-}
-.footer_bottom a {
-    font-size: 14px;
-}
+    }
+
+    .footer ul li:nth-child(1) {
+        margin-top: 30px;
+        padding-bottom: 16px;
+        font-size: 16px;
+    }
+
+    .messages {
+        gap: 10px;
+    }
+
+    .messages .footer_icon {
+        padding: 10px;
+    }
+
+    .footer_bottom {
+        align-items: start;
+    }
+
+    .footer_bottom a {
+        font-size: 14px;
+    }
 }
 </style>

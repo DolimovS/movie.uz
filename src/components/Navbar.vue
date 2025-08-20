@@ -1,5 +1,5 @@
 <template>
-    <nav class="container"> 
+    <nav class=""> 
         <div class="nav_logo">
             <picture>
                 <source media="(min-width:1920px)" :srcset="desktopLogo">
@@ -59,8 +59,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 nav {
+    /* margin: 0 auto; */
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -70,18 +71,21 @@ nav {
     width: 100%;
     padding: 23px 162px;
     z-index: 999;
-    /* backdrop-filter: blur(10px); */
+    backdrop-filter: blur(10px);
 }
-.nav_link ul {
-    display: flex;
+
+nav .nav_link ul {
+    /* border: 1px solid red; */
+display: flex;
     align-items: center;
+    /* justify-content: center; */
     gap: 30px;
     background-color: #0f0f0f;
     border-radius: 12px;
     padding: 20px;
     border: 4px solid #1F1F1F;
 }
-.nav_link ul li span {
+nav .nav_link ul li span {
     padding: 14px 24px;
     border-radius: 8px;
     font-family: Manrope;
@@ -92,28 +96,28 @@ nav {
     color: #bfbfbf;
     border-radius: 8px;
 }
-.nav_link_item.router-link-active span {
+nav .nav_link_item.router-link-active span {
     font-weight: 500;
     background-color: #1a1a1a;
     color: #ffffff;
 }
-.nav_link ul li a {
+nav .nav_link ul li a {
   text-decoration: none;
 }
-.nav_link ul li span:hover {
+nav .nav_link ul li span:hover {
     font-weight: 500;
     background-color: #292828;
     color: #ffffff;
 }
-.nav_icons {
+nav .nav_icons {
     display: flex;
     align-items: center;
     gap: 30px;
 }
-.nav_icon_search {
+nav .nav_icon_search {
     cursor: pointer;
 }
-.nav_icon_bars {
+nav .nav_icon_bars {
     display: none;
 }
 
@@ -121,21 +125,21 @@ nav {
     nav {
         padding: 19px 80px;
     }
-    .nav_link ul {
+    nav .nav_link ul {
         gap: 16px;
         padding: 16px;
         border: 4px solid #1F1F1F;
     }
-    .nav_link ul li span {
+    nav .nav_link ul li span {
         padding: 12px 20px;
         font-size: 14px;
     }
-    .nav_link ul li span:hover {
+    nav .nav_link ul li span:hover {
         font-weight: 500;
         background-color: #1a1a1a;
         color: #ffffff;
     }
-    .nav_icons {
+    .nav nav_icons {
         gap: 14px;
     }
 }
@@ -144,13 +148,13 @@ nav {
     nav {
         padding: 40px 16px;
     }
-    .nav_icons {
+    nav .nav_icons {
         display: none;
     }
-    .nav_icon_bars {
+    nav .nav_icon_bars {
         display: block;
     }
-    .nav_link {
+    nav .nav_link {
         position: absolute;
         top: 0;
         right: 0;
@@ -161,8 +165,9 @@ nav {
         z-index: 99;
         display: none;
     }
-    .nav_link.open {
+    nav .nav_link.open {
      display: block;  
+     border: 1px solid red;
     }
     .nav_list {
         position: absolute;
@@ -173,7 +178,7 @@ nav {
         flex-direction: column;
         width: 80%;
     }
-    .nav_link li {
+    nav .nav_link li {
         width: 100%;
         padding: 12px 5px;
         line-height: 100%;

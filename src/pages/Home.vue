@@ -1,8 +1,10 @@
 <template>
     <HomeSection/>
+    <HomeCatogoriya/>
 </template>
 
 <script>
+import HomeCatogoriya from '../components/HomeCatogoriya.vue';
 import HomeSection from '../components/HomeSection.vue';
 
 
@@ -10,11 +12,12 @@ import HomeSection from '../components/HomeSection.vue';
         name:"home",
         components:{
             HomeSection,
+            HomeCatogoriya,
         }
 
     }
 </script>
 
-<style lang="scss" scoped>
+<style >
 
 </style>
