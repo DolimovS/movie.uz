@@ -39,7 +39,7 @@ export default {
 
   data() {
     return {
-
+ currentIndex: 0,
       breakpoints: {
         1200: {
           itemsToShow: 5,
