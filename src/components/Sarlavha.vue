@@ -31,6 +31,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* border: 1px solid red; */
 }
 
 .container_text {
@@ -57,6 +58,22 @@ export default {
     /* leading-trim: NONE; */
     line-height: 150%;
     letter-spacing: 0%;
-
+    max-width: 1290px;
+}
+@media (max-width: 1220px) {
+.container_text h1 {
+    font-size: 28px;
+}
+.container_text p {
+    font-size: 16px;
+}
+}
+@media (max-width: 1220px) {
+.container_text h1 {
+    font-size: 28px;
+}
+.container_text p {
+    font-size: 14px;
+}
 }
 </style>

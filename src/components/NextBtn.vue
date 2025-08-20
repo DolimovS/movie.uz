@@ -1,13 +1,13 @@
 <template>
     <div class="btn_container">
-        <button class="next_btn"><Icon name="prev"/></button>
+        <button @click="$emit('goPrev')" class="next_btn"><Icon name="prev"/></button>
         <div class="corusel_liner">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <button class="next_btn"><Icon name="next"/></button>
+        <button @click="$emit('goNext')" class="next_btn"><Icon name="next"/></button>
 
     </div>
 </template>
@@ -28,6 +28,8 @@ import Icon from './Template/Icon.vue';
     background-color: #0F0F0F;
     border-radius: 8px;
     gap: 16px;
+    /* border: 1px solid red; */
+    /* align-items: center; */
 }
 .next_btn{
     cursor: pointer;
@@ -47,4 +49,23 @@ import Icon from './Template/Icon.vue';
     background-color: #333333;
     border-radius: 100px;
 }
+@media (max-width: 1220px) {
+.btn_container{
+    padding: 12px;
+    gap: 12px;
+}
+.next_btn{
+    padding: 10px;
+}
+}
+
+@media (max-width: 750px) {
+.btn_container{
+    display: inline-flex;
+    margin-top: 20px;
+}
+
+}
+
+
 </style>
