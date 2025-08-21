@@ -97,6 +97,7 @@ export default {
 .card_container {
   gap: 24px;
   padding: 40px;
+  /* border: 1px silid red; */
 }
 .card_container_text {
     gap: 12px;
