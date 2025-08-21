@@ -12,6 +12,7 @@
                 <Button :btn_title="btn_title"
                  btn_bc_color="#E50000"/>
             </div>
+            <Questions/>
         </div>
     </div>
 </template>
@@ -20,6 +21,7 @@
 import HomeCatogoriya from '../components/HomeCatogoriya.vue';
 import HomeSection from '../components/HomeSection.vue';
 import Sarlavha from '../components/Sarlavha.vue';
+import Questions from '../components/Questions.vue';
 import Devices from "../components/Devices.vue"
 import Button from "../components/Button.vue"
 
@@ -32,6 +34,7 @@ export default {
         Sarlavha,
         Devices,
         Button,
+        Questions,
     },
     data() {
         return {
@@ -60,10 +63,13 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 80px;
+    /* border: 1px solid red; */
 }
 /* questions_page */
 .questions_page{
-
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
 }
 .question_title{
     display: flex;
@@ -74,9 +80,17 @@ export default {
 
 @media (max-width:1440px) {
     .decices_product {
-        padding-top: 120px;
-        gap: 60px;
+        /* padding-top: 120px; */
+        gap: 50px;
     }
+    .home {
+    gap: 80px;
+}
+}
+@media (max-width:1000px) {
+    .home {
+    gap: 60px;
+}
 }
 
 @media (max-width:600px) {
@@ -84,6 +98,13 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: start;
+    gap: 20px;
+}
+ .decices_product {
+        /* padding-top: 120px; */
+        gap: 20px;
+    }
+    .home {
     gap: 20px;
 }
 }
