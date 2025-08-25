@@ -14,16 +14,21 @@
             </div>
             <Questions/>
         </div>
+        <div class="plan_page">
+            <Plan/>
+        </div>
     </div>
 </template>
 
+
 <script>
-import HomeCatogoriya from '../components/HomeCatogoriya.vue';
-import HomeSection from '../components/HomeSection.vue';
-import Sarlavha from '../components/Sarlavha.vue';
-import Questions from '../components/Questions.vue';
-import Devices from "../components/Devices.vue"
-import Button from "../components/Button.vue"
+import HomeCatogoriya from '../../components/HomeCatogoriya.vue';
+import HomeSection from '../../components/HomeSection.vue';
+import Sarlavha from '../../components/Sarlavha.vue';
+import Questions from '../../components/Questions.vue';
+import Devices from "../../components/Devices.vue"
+import Button from "../../components/Button.vue"
+import Plan from '../../components/Plan.vue';
 
 
 export default {
@@ -35,6 +40,7 @@ export default {
         Devices,
         Button,
         Questions,
+        Plan,
     },
     data() {
         return {
@@ -101,7 +107,6 @@ export default {
     gap: 20px;
 }
  .decices_product {
-        /* padding-top: 120px; */
         gap: 20px;
     }
     .home {
