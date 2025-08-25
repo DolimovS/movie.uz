@@ -5,7 +5,6 @@
       <NextBtn v-if="btn_hiddden" class="next_btn_1" @goPrev="goPrev" @goNext="goNext" />
     </div>
 
-
     <div class="corusel_container">
       <Corousel :categories="categories" :command="command" />
       <NextBtn v-if="!btn_hiddden" class="next_btn_2" @goPrev="goPrev" @goNext="goNext" />
@@ -55,30 +54,30 @@ export default {
         name: "Explore our wide variety of categories",
         discription: "Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new"
       },
-      command: '',
+      command: 0,   // 🔥 counter bo‘ldi
       btn_hiddden: true
     }
   },
 
   methods: {
     goNext() {
-      this.command = 'next'
+      this.command++  // har safar +1
     },
     goPrev() {
-      this.command = 'prev'
+      this.command--  // har safar -1
     },
     btn_hidden_toggle() {
-    this.btn_hiddden = window.innerWidth < 750 ? false : true
-  }
-
-  },
-   mounted() {
-      this.btn_hidden_toggle() // sahifa yuklanganda tekshir
-      window.addEventListener('resize', this.btn_hidden_toggle)
-    },
-    beforeUnmount() {
-      window.removeEventListener('resize', this.btn_hidden_toggle)
+      this.btn_hiddden = window.innerWidth < 750 ? false : true
     }
+  },
+
+  mounted() {
+    this.btn_hidden_toggle()
+    window.addEventListener('resize', this.btn_hidden_toggle)
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.btn_hidden_toggle)
+  }
 }
 </script>
 
@@ -92,29 +91,8 @@ export default {
   gap: 80px;
 }
 
-.wrapper_home .controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 20px;
-}
-
-.wrapper_home button {
-  padding: 8px 16px;
-  border: none;
-  background: #333;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.wrapper_home button:hover {
-  background: #555;
-}
-
 .wrapper_home .sarlavha {
   display: flex;
-  /* border: 1px solid red; */
   width: 100%;
   align-items: end;
   justify-content: space-between;
@@ -123,28 +101,21 @@ export default {
 }
 
 .wrapper_home .corusel_container {
-  /* width: 1600px; */
   width: 100%;
   position: relative;
-  
   /* border: 1px solid red; */
 }
 
-
-
 @media (max-width: 750px) {
  .wrapper_home {
-  max-width: 1600px;
-  width: 100%;
   gap: 40px;
-
 }
 .wrapper_home .corusel_container {
   padding-bottom: 100px;
 }
-.next_btn_2{
+.next_btn_2 {
   position:absolute;
-  bottom: unset;right: 10px;
+  right: 10px;
 }
 }
 </style>
