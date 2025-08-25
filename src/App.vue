@@ -11,9 +11,6 @@
 <script>
 import Footer from './components/Footer.vue';
 import Navbar from './components/Navbar.vue';
-// import Home from './pages/Home.vue';
-// import MoviesOpen from './pages/MoviesOpen.vue';
-// import Support from './pages/Support.vue';
 
   export default {
       name:"App",
