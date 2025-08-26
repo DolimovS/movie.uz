@@ -62,7 +62,7 @@ export default {
 <style >
 nav {
     /* margin: 0 auto; */
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     flex-direction: row;
     align-items: center;
