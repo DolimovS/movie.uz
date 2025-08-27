@@ -1,17 +1,13 @@
 <template>
     <div>
-        <Carousel ref="corousel" 
-        :itemsToShow="1"
-         wrapAround 
-        :autoplay="5000"
-        >
+        <Carousel ref="corousel" :itemsToShow="1" wrapAround :autoplay="5000">
             <Slide v-for="product in products" :key="product.id">
-                <div class="moviesCard" :style="{ backgroundImage: `url('${product.image}')` }">
+                <div class="moviesCard" :style="{ backgroundImage: `url('${product.bannerUrl}')` }">
                     <div class="cardOverlay">
                         <div class="meta">
                             <div class="meta_text">
-                                <h2 class="title">{{ product.title }}</h2>
-                                <p >{{ product.description }}</p>
+                                <h2 class="title">{{ product.title.uz }}</h2>
+                                <p>{{ product.description.uz }}</p>
                             </div>
                             <div class="corusel_btn">
                                 <router-link :to="`/movies/${product.id}`">
@@ -45,23 +41,7 @@ export default {
     components: { Carousel, Slide, Icon, Button, },
     data() {
         return {
-            products: [
-                {
-                    id: 1,
-                    image: 'https://picsum.photos/seed/1/1200/600',
-                    title: 'Qasoskorlar: Endgame',
-                    description: "Qolgan ittifoqchilar yordamida Qasoskorlar Thanosning xatti-harakatlarini bekor qilish va koinotdagi tartibsizlikni bartaraf etish uchun yana bir bor to'planishlari kerak, ular qanday oqibatlarga olib kelishi va kimga duch kelishidan qat'i nazar... Yiqilganlar uchun qasos olish."
-                },
-                { id: 2, image: 'https://picsum.photos/seed/2/1200/600', title: 'Kino 2', description: "Komediya janrida kulgili sahnalar va iliq obrazlar." },
-                { id: 3, image: 'https://picsum.photos/seed/3/1200/600', title: 'Kino 3', description: "Romantik syujet, his-tuyg'ularga boy." },
-                { id: 4, image: 'https://picsum.photos/seed/4/1200/600', title: 'Kino 4', description: "Ilmiy fantaziya va kelajak manzaralari." },
-                { id: 5, image: 'https://picsum.photos/seed/5/1200/600', title: 'Kino 5', description: "Triller: sirli voqealar va hayajon." },
-                { id: 6, image: 'https://picsum.photos/seed/6/1200/600', title: 'Kino 6', description: "Oilaviy drama, qadr-qimmat va qadriyatlar." },
-                { id: 7, image: 'https://picsum.photos/seed/7/1200/600', title: 'Kino 7', description: "Animatsion sarguzashtlar va rang-barang dunyo." },
-                { id: 8, image: 'https://picsum.photos/seed/8/1200/600', title: 'Kino 8', description: "Tarixiy film, o'ziga xos zamon manzarasi." },
-                { id: 9, image: 'https://picsum.photos/seed/9/1200/600', title: 'Kino 9', description: "Kriminal syujet, tergov va intriga." },
-                { id: 10, image: 'https://picsum.photos/seed/10/1200/600', title: 'Kino 10', description: "Sarguzasht va do'stlik haqida jonli film." }
-            ]
+            products: [ ],
         };
 
 
@@ -72,7 +52,19 @@ export default {
         },
         prevSlide() {
             this.$refs.corousel.prev()
-        }
+        },
+    },
+    mounted() {
+        fetch("https://movie-beckend.vercel.app/api/movie")
+            .then(r => r.json())
+            .then(data =>{
+                 console.log(data)
+                this.products=data.items
+                console.log(this.products);
+                
+                }
+        );
+
     }
 };
 </script>
@@ -173,81 +165,93 @@ export default {
 }
 
 
-@media (max-width: 1440px){
+@media (max-width: 1440px) {
     .moviesCard {
-    width: 1280px;
-    height: 610px;
-}
-.meta {
-    gap: 24px;
-}
-.cardOverlay {
-    gap: 40px;
-    padding-bottom: 16px;
-}
-.meta_text h2 {
-    font-size: 30px;
-}
-.meta_text p {
-    font-size: 16px;
-}
-.slider_btn {
-    padding: 0 40px;
-}
-.prev_btn_1,
-.next_btn_1 {
-    padding: 12px;
-}
+        width: 1280px;
+        height: 610px;
+    }
+
+    .meta {
+        gap: 24px;
+    }
+
+    .cardOverlay {
+        gap: 40px;
+        padding-bottom: 16px;
+    }
+
+    .meta_text h2 {
+        font-size: 30px;
+    }
+
+    .meta_text p {
+        font-size: 16px;
+    }
+
+    .slider_btn {
+        padding: 0 40px;
+    }
+
+    .prev_btn_1,
+    .next_btn_1 {
+        padding: 12px;
+    }
 }
 
 
-@media (max-width: 950px){
+@media (max-width: 950px) {
     .moviesCard {
-    /* width:1280px; */
-    height: 510px;
+        /* width:1280px; */
+        height: 510px;
+    }
+
+    .meta {
+        gap: 20px;
+    }
+
+    .cardOverlay {
+        gap: 30px;
+        padding-bottom: 12px;
+    }
+
+    .meta_text h2 {
+        font-size: 25px;
+    }
+
+    .meta_text p {
+        font-size: 12px;
+    }
+
+    .slider_btn {
+        padding: 0 30px;
+    }
+
+    .prev_btn_1,
+    .next_btn_1 {
+        padding: 10px;
+    }
 }
 
-.meta {
-    gap: 20px;
-}
-.cardOverlay {
-    gap: 30px;
-    padding-bottom: 12px;
-}
-.meta_text h2 {
-    font-size: 25px;
-}
-.meta_text p {
-    font-size: 12px;
-}
-.slider_btn {
-    padding: 0 30px;
-}
-.prev_btn_1,
-.next_btn_1 {
-    padding: 10px;
-}
-}
-
-@media (max-width: 750px){
+@media (max-width: 750px) {
     .moviesCard {
-    height:430px;
-}
+        height: 430px;
+    }
 }
 
-@media (max-width: 590px){
+@media (max-width: 590px) {
     .meta_text p {
         display: none;
     }
 }
-@media (max-width: 460px){
-    .slider_btn{
+
+@media (max-width: 460px) {
+    .slider_btn {
         display: none;
     }
-    .moviesCard {
-    width: 360px;
-    height: 410px;
-}
-}
 
+    .moviesCard {
+        width: 360px;
+        height: 410px;
+    }
+}
 </style>
