@@ -5,16 +5,18 @@
     :wrap-around="true"
     :breakpoints="breakpoints"
   >
-    <Slide v-for="cat in categories" :key="cat.id">
-      <div class="card">
+  <Slide v-for="item in categories" :key="item.id">
+    <router-link  to="catogoriyamovie" >
+    <div class="card">
         <div class="img_container">
-          <img :src="cat.image" :alt="cat.name" />
+          <img :src="item.image" alt="imgage" />
         </div>
         <div class="overlay">
-          <h3>{{ cat.name }}</h3>
+          <h3>{{item.name }}</h3>
           <Icon name="next"/>
         </div>
       </div>
+    </router-link>
     </Slide>
   </Carousel>
 </template>
