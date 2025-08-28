@@ -14,12 +14,9 @@
 
 <script>
 import Corousel from "../utils/Corousel.vue"
-import img_1 from "../assets/img1.png"
-import img_2 from "../assets/img2.png"
-import img_3 from "../assets/img3.png"
-import img_4 from "../assets/img4.png"
 import Sarlavha from "./Sarlavha.vue"
 import NextBtn from "./NextBtn.vue"
+import {categoriesData} from "../Data/CatogoriyaData"
 
 export default {
   name: 'Home',
@@ -32,30 +29,13 @@ export default {
 
   data() {
     return {
-      categories: [
-        { id: 1, name: 'Komediya', slug: 'comedy', image: img_1 },
-        { id: 2, name: 'Drama', slug: 'drama', image: img_2 },
-        { id: 3, name: 'Action', slug: 'action', image: img_3 },
-        { id: 4, name: 'Fantastika', slug: 'fantasy', image: img_4 },
-        { id: 5, name: 'Komediya', slug: 'comedy', image: img_3 },
-        { id: 6, name: 'Drama', slug: 'drama', image: img_4 },
-        { id: 7, name: 'Action', slug: 'action', image: img_1 },
-        { id: 8, name: 'Fantastika', slug: 'fantasy', image: img_2 },
-        { id: 9, name: 'Komediya', slug: 'comedy', image: img_1 },
-        { id: 10, name: 'Drama', slug: 'drama', image: img_2 },
-        { id: 11, name: 'Action', slug: 'action', image: img_3 },
-        { id: 12, name: 'Fantastika', slug: 'fantasy', image: img_4 },
-        { id: 13, name: 'Komediya', slug: 'comedy', image: img_3 },
-        { id: 14, name: 'Drama', slug: 'drama', image: img_4 },
-        { id: 15, name: 'Action', slug: 'action', image: img_1 },
-        { id: 16, name: 'Fantastika', slug: 'fantasy', image: img_2 },
-      ],
       pagename: {
         name: "Explore our wide variety of categories",
         discription: "Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new"
       },
       command: 0,   // 🔥 counter bo‘ldi
-      btn_hiddden: true
+      btn_hiddden: true,
+      categories:categoriesData,
     }
   },
 
@@ -74,10 +54,12 @@ export default {
   mounted() {
     this.btn_hidden_toggle()
     window.addEventListener('resize', this.btn_hidden_toggle)
+
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.btn_hidden_toggle)
-  }
+  },
+
 }
 </script>
 
@@ -107,15 +89,17 @@ export default {
 }
 
 @media (max-width: 750px) {
- .wrapper_home {
-  gap: 40px;
-}
-.wrapper_home .corusel_container {
-  padding-bottom: 100px;
-}
-.next_btn_2 {
-  position:absolute;
-  right: 10px;
-}
+  .wrapper_home {
+    gap: 40px;
+  }
+
+  .wrapper_home .corusel_container {
+    padding-bottom: 100px;
+  }
+
+  .next_btn_2 {
+    position: absolute;
+    right: 10px;
+  }
 }
 </style>
