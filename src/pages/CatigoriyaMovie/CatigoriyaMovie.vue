@@ -35,6 +35,7 @@ import { categoriesData } from "../../Data/CatogoriyaData";
 
 export default {
   props: {
+    
     categoryId: {
       type: String,
       default: "all"
