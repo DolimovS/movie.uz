@@ -15,7 +15,7 @@
     <div class="kinolar">
       <div class="kinolar_container">
         <div v-for="item in filteredMovies" :key="item.id" class="card_kino">
-          <router-link>
+          <router-link :to="`/movies/${item.id}`"">
             <div class="onekonilar">
               <img :src="item.bannerUrl" alt="movie images" />
               <div class="kino_title">
