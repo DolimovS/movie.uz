@@ -1,95 +1,117 @@
 <template>
-    <div class="catogoriya_movie_container">
-        <div class="catigoriya_title">
-            <h1>{{ selectedCategoryName }}</h1>
-            <div class="catigoriya_sellect">
-                <select class="catigoriya_select" v-model="selectedCategoryId">
-                    <option value="all">All</option>
-                    <option v-for="item in source" :key="item.id" :value="item.id">
-                        {{ item.name }}
-                    </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="kinolar">
-            <!-- <p><b>Server filter key:</b> {{ selectedCategoryEngName }}</p> -->
-            <div class="kinolar_container">
-                <div v-for="item in allmovie" :key="item.id" class="card_kino">
-                    <router-link>
-                        <div class="onekonilar">
-                            <img :src="item.bannerUrl" alt="movie images">
-                            <div class="kino_title">
-                                <h1>{{ item.title.uz }}</h1>
-                                <p class="kino_time">2:39:01</p>
-                            </div>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-
-        </div>
+  <div class="catogoriya_movie_container">
+    <div class="catigoriya_title">
+      <h1>{{ selectedCategoryName }}</h1>
+      <div class="catigoriya_sellect">
+        <select class="catigoriya_select" v-model="selectedCategoryId">
+          <option value="all">All</option>
+          <option v-for="item in source" :key="item.id" :value="String(item.id)">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
     </div>
+
+    <div class="kinolar">
+      <div class="kinolar_container">
+        <div v-for="item in filteredMovies" :key="item.id" class="card_kino">
+          <router-link>
+            <div class="onekonilar">
+              <img :src="item.bannerUrl" alt="movie images" />
+              <div class="kino_title">
+                <h1>{{ item.title.uz }}</h1>
+                <p class="kino_time">2:39:01</p>
+              </div>
+            </div>
+          </router-link>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { categoriesData } from "../../Data/CatogoriyaData";
 
 export default {
-    props: {
-        categoryId: {
-            type: String,
-            default: "all"
-        }
-    },
-    data() {
-        return {
-            source: categoriesData,
-            selectedCategoryId: "all",
-            allmovie: [],
-        };
-    },
-    computed: {
-        selectedCategory() {
-            if (this.selectedCategoryId === "all") {
-                return { id: "all", name: "All", engName: "all" }
-            }
-            return this.source.find(item => item.id === this.selectedCategoryId)
-        },
-
-        selectedCategoryName() {
-            return this.selectedCategory?.name || "All"
-        },
-
-        selectedCategoryEngName() {
-            return this.selectedCategory?.engName || "all"
-        }
-
-
-
-    },
-    mounted() {
-        if (this.categoryId !== "all") {
-            this.selectedCategoryId = this.categoryId;
-        }
-        fetch("https://movie-beckend.vercel.app/api/movie")
-            .then(r => r.json())
-            .then(data => {
-                this.allmovie = data.items
-                console.log(this.allmovie);
-
-            })
-            .catch(
-
-        )
+  props: {
+    categoryId: {
+      type: String,
+      default: "all"
     }
+  },
+  data() {
+    return {
+      source: categoriesData,
+      selectedCategoryId: "all",
+      allmovie: [],
+      tanlanganlar: [] // filtered results for other uses / debugging
+    };
+  },
+  computed: {
+    selectedCategory() {
+      if (this.selectedCategoryId === "all") {
+        return { id: "all", name: "All", engName: "all" };
+      }
+      return this.source.find(item => String(item.id) === String(this.selectedCategoryId));
+    },
+    selectedCategoryName() {
+      return this.selectedCategory?.name || "All";
+    },
+    selectedCategoryEngName() {
+      return this.selectedCategory?.engName || "all";
+    },
+    filteredMovies() {
+      // computed must return the value (no side-effects here)
+      if (!this.allmovie || this.allmovie.length === 0) return [];
+      const eng = this.selectedCategoryEngName;
+      if (eng === "all") return this.allmovie;
+
+      return this.allmovie.filter(item => {
+        if (!item.genres) return false;
+        if (Array.isArray(item.genres)) {
+          return item.genres.includes(eng);
+        } else if (typeof item.genres === "string") {
+          // agar server string qaytarsa (masalan: "action,drama")
+          return item.genres.split(",").map(s => s.trim()).includes(eng);
+        }
+        return false;
+      });
+    }
+  },
+  watch: {
+    // agar xohlasang filteredMovies o'zgarganda tanlanganlar yangilansin
+    filteredMovies(newVal) {
+      this.tanlanganlar = newVal;
+      console.log("tanlanganlar", newVal);
+    }
+  },
+  mounted() {
+    if (this.categoryId !== "all") {
+      this.selectedCategoryId = this.categoryId;
+    }
+
+    fetch("https://movie-beckend.vercel.app/api/movie")
+      .then(r => r.json())
+      .then(data => {
+        this.allmovie = data.items || [];
+        console.log("allmovie", this.allmovie);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+    // **Eslatma**: bu yerda this.filteredMovies = ... yozish NOTO'G'RI.
+    // computed ga hech qachon yuklamang (yozmayin) — oʻchirib qoʻydim.
+  }
 };
 </script>
+
 
 <style>
 .catogoriya_movie_container {
     max-width: 1600px;
-    padding: 0 160px 10px; 
+    padding: 0 160px 10px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -168,15 +190,17 @@ export default {
     background-color: #262626;
     font-family: Manrope;
 }
+
 @media (max-width: 1440px) {
     .catogoriya_movie_container {
-    padding: 0 80px 10px; 
+        padding: 0 80px 10px;
+    }
 }
-}
+
 @media (max-width: 770px) {
     .catogoriya_movie_container {
-    padding: 0 20px 10px; 
-}
+        padding: 0 20px 10px;
+    }
 }
 
 @media (max-width: 1220px) {
