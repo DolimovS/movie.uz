@@ -5,7 +5,7 @@
       <div class="catigoriya_sellect">
         <select class="catigoriya_select" v-model="selectedCategoryId">
           <option value="all">All</option>
-          <option v-for="item in source" :key="item.id" :value="String(item.id)">
+          <option v-for="item in source" :key="item.id" :value="item.id">
             {{ item.name }}
           </option>
         </select>
@@ -15,7 +15,7 @@
     <div class="kinolar">
       <div class="kinolar_container">
         <div v-for="item in filteredMovies" :key="item.id" class="card_kino">
-          <router-link :to="`/movies/${item.id}`"">
+          <router-link :to="`/movies/${item.id}`">
             <div class="onekonilar">
               <img :src="item.bannerUrl" alt="movie images" />
               <div class="kino_title">
@@ -90,13 +90,13 @@ export default {
     }
 
     fetch("https://movie-beckend.vercel.app/api/movie")
-      .then(r => r.json())
-      .then(data => {
+      .then((r) => r.json())
+      .then((data) => {
         this.allmovie = data.items || [];
-        console.log("allmovie", this.allmovie);
+        // console.log("allmovie", this.allmovie);
       })
-      .catch(err => {
-        console.error(err);
+      .catch((err) => {
+        // console.error(err);
       });
 
   }
