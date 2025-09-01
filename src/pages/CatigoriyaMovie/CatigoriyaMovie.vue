@@ -15,7 +15,7 @@
     <div class="kinolar">
       <div class="kinolar_container">
         <div v-for="item in filteredMovies" :key="item.id" class="card_kino">
-          <router-link>
+          <router-link :to="`/movies/${item.id}`"">
             <div class="onekonilar">
               <img :src="item.bannerUrl" alt="movie images" />
               <div class="kino_title">
@@ -35,6 +35,7 @@ import { categoriesData } from "../../Data/CatogoriyaData";
 
 export default {
   props: {
+
     categoryId: {
       type: String,
       default: "all"
@@ -45,7 +46,7 @@ export default {
       source: categoriesData,
       selectedCategoryId: "all",
       allmovie: [],
-      tanlanganlar: [] // filtered results for other uses / debugging
+      tanlanganlar: [] 
     };
   },
   computed: {
@@ -62,7 +63,6 @@ export default {
       return this.selectedCategory?.engName || "all";
     },
     filteredMovies() {
-      // computed must return the value (no side-effects here)
       if (!this.allmovie || this.allmovie.length === 0) return [];
       const eng = this.selectedCategoryEngName;
       if (eng === "all") return this.allmovie;
@@ -72,7 +72,6 @@ export default {
         if (Array.isArray(item.genres)) {
           return item.genres.includes(eng);
         } else if (typeof item.genres === "string") {
-          // agar server string qaytarsa (masalan: "action,drama")
           return item.genres.split(",").map(s => s.trim()).includes(eng);
         }
         return false;
@@ -80,7 +79,6 @@ export default {
     }
   },
   watch: {
-    // agar xohlasang filteredMovies o'zgarganda tanlanganlar yangilansin
     filteredMovies(newVal) {
       this.tanlanganlar = newVal;
       console.log("tanlanganlar", newVal);
@@ -101,8 +99,6 @@ export default {
         console.error(err);
       });
 
-    // **Eslatma**: bu yerda this.filteredMovies = ... yozish NOTO'G'RI.
-    // computed ga hech qachon yuklamang (yozmayin) — oʻchirib qoʻydim.
   }
 };
 </script>
@@ -116,7 +112,6 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    /* border: 1px solid red; */
 }
 
 .catigoriya_title {
@@ -169,7 +164,6 @@ export default {
     border-radius: 20px;
 }
 
-/* Kino title */
 .kino_title {
     display: flex;
     align-items: center;
